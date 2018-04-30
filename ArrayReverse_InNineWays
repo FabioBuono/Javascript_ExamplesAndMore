@@ -54,8 +54,6 @@ var b = [].concat(a).reverse();
 // ----------------------------------------------------------------- //
 // Reverse Array (3)
 
-const a = [1,"two",3,"four",5,"six"];
-
 function reverseArray(array){
   return array.map((item,idx) => array[array.length-1-idx])
 }
