@@ -1,0 +1,98 @@
+
+
+function findLongestWord(string) {
+    var str = string.split(" ");
+    var longest = 0;
+    var word = null;
+    str.forEach(function(str) {
+        if (longest < str.length) {
+            longest = str.length;
+            word = str;
+        }
+    });
+    return word;
+}
+
+
+
+function findLongestWord(str) {
+  var strSplit = str.split(' ');
+  var longestWord = 0;
+  for(var i = 0; i < strSplit.length; i++){
+    if(strSplit[i].length > longestWord){
+	longestWord = strSplit[i].length;
+     }
+  }
+  return longestWord;
+}
+
+
+function findLongestWord(str) {
+  var longestWord = str.split(' ').sort(function(a, b) { return b.length - a.length; });
+  return longestWord[0].length;
+}
+
+
+function findLongestWord(sent){
+ var arr = sent.match(/[a-z]+/gi);
+ arr.sort(function(a, b){
+ return b.length - a.length;
+});
+ return arr[0];
+}
+
+function findLongestWord(str) {
+  var longestWord = str.split(' ').reduce(function(longest, currentWord) {
+    return currentWord.length > longest.length ? currentWord : longest;
+  }, "");
+  return longestWord.length;
+}
+
+
+
+function findLongestWord(string) {
+    var str = string.split(" ");
+    var longest = 0;
+    var word = null;
+    for (var i = 0; i <= str.length - 1; i++) {
+        if (longest < str[i].length) {
+            longest = str[i].length;
+            word = str[i];
+        }
+    }
+    return word;
+}
+
+
+
+
+
+
+
+
+
+
+
+function getLongest (arrStr) {
+  var longest = 0, word;
+
+  for(var i=0 , len = arrStr.length ; i < len ; i++){
+
+    if(longest < arrStr[i].length) {
+      longest =arrStr[i].length;
+      word = arrStr[i];
+    }
+
+  }
+
+  return word;
+}
+
+function isLongest (str) {
+  var arrayStr = str.split(' ');
+  return function(fn) {
+    return fn.apply(this,[arrayStr]);
+  }
+}
+
+isLongest("str1 str22 str333")(getLongest);
