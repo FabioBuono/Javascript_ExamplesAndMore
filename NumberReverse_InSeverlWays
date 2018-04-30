@@ -1,0 +1,16 @@
+ function reverseNumber(n) {
+    for(var r = 0; n; n = Math.floor(n / 10)) {
+        r *= 10;
+        r += n % 10;
+    }
+    return r;
+}
+
+
+
+const reverseNumber = num => +("" + ~~num.split("").reverse().join(""));
+
+
+function reverseNumber(n) {  
+  return Number(Array.from(String(Math.abs(n))).reverse().join('')) * Math.sign(n);
+}
