@@ -1,21 +1,26 @@
+// -------------------------------------------- //
+// Fill array with unique values
+
+const arr = [...new Set([1, 2, 3, 3])]
+
+// -------------------------------------------- //
 //  Get a random item from an array
 
 var items = [12, 548 , 'a' , 2 , 5478 , 'foo' , 8852, , 'Doe' , 2145 , 119];
 var  randomItem = items[Math.floor(Math.random() * items.length)];
 
-
+// -------------------------------------------- //
 // Get a random number in a specific range
 
 var x = Math.floor(Math.random() * (max - min + 1)) + min;
 
-
-
+// -------------------------------------------- //
 // Generate an array of numbers with numbers from 0 to max
 
 var numbersArray = [] , max = 100;
 for( var i=1; numbersArray.push(i++) < max;);
 
-
+// -------------------------------------------- //
 // Generate a random set of alphanumeric characters
 
 function generateRandomAlphaNum(len) {
@@ -25,32 +30,65 @@ function generateRandomAlphaNum(len) {
 
 }
 
+// -------------------------------------------- //
 // Shuffle an array of numbers
 
 var numbers = [5, 458 , 120 , -215 , 228 , 400 , 122205, -85411];
 numbers = numbers.sort(function(){ return Math.random() - 0.5});
 
-
+// -------------------------------------------- //
 // Append an array to another array
 
 var array1 = [12 , "foo" , {name "Joe"} , -2458];
-
 var array2 = ["Doe" , 555 , 100];
 Array.prototype.push.apply(array1, array2);
 
+// -------------------------------------------- //
+// Check existence of an element in array (using indexOf)
 
+if (a.indexOf('a') > -1){
+    console.log('Element exists');
+}else{
+    console.log('Element does not exist');
+}
+
+
+// -------------------------------------------- //
+Note:
+
+1 in ["a",,"b"]
+    false
+
+1 in ["a", undefined, "b"]
+    true
+// -------------------------------------------- //
+
+
+// -------------------------------------------- //
+// Remove Array element by Index
+
+var array1 = ['a','b','c'];
+var removedelements = a.splice(0,2);
+console.log(removedElements); // ['a','b']
+console.log(array1 ); // ['c']
+
+
+// -------------------------------------------- //
 // Verify that a given argument is an array
 
 function isArray(obj){
     return Object.prototype.toString.call(obj) === '[object Array]' ;
 }
 
+
+// -------------------------------------------- //
 // Get the max or the min in an array of numbers
 
 var  numbers = [5, 458 , 120 , -215 , 228 , 400 , 122205, -85411]; 
 var maxInNumbers = Math.max.apply(Math, numbers); 
 var minInNumbers = Math.min.apply(Math, numbers);
 
+// -------------------------------------------- //
 // Empty an array
 
 var myArray = [12 , 222 , 1000 ];  
