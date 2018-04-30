@@ -1,32 +1,70 @@
-function checkPalindrom(str) {
+Copyright 2018 Fabio Buono (fabio.buono@ymail.com)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and 
+associated documentation files (the "Software"), to deal in the Software without restriction, 
+including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, 
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial 
+portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, 
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
+OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+// ----------------------------------------------------------------- //
+// ----------------------------------------------------------------- //
+//                      Palindrome Check                             //
+// ----------------------------------------------------------------- //
+// ----------------------------------------------------------------- //
+
+
+// ----------------------------------------------------------------- //
+// Palindrome (1)
+
+function checkPalindrome(str) {
     return str == str.split('').reverse().join('');
 }
 
-function isPalindrome(s,i) {
- return (i=i||0)<0||i>=s.length>>1||s[i]==s[s.length-1-i]&&isPalindrome(s,++i);
+// ----------------------------------------------------------------- //
+// Palindrome (2)
+
+function checkPalindrome(s,i) {
+ return (i=i||0)<0||i>=s.length>>1||s[i]==s[s.length-1-i]&&checkPalindrome(s,++i);
 }
 
+// ----------------------------------------------------------------- //
+// Palindrome (3)
 
-palindrome=s=>s==[...s].reverse().join``
+checkPalindrome=s=>s==[...s].reverse().join``
 
+// ----------------------------------------------------------------- //
+// Palindrome (4)
 
-function isPalindrome(str) {
+function checkPalindrome(str) {
     str = str.toLowerCase().replace(/\W+|_/g, '');
     return str == str.split('').reverse().join('');
 }
 
+// ----------------------------------------------------------------- //
+// Palindrome 5)
 
 
 
-function palindrome(str) {
+function checkPalindrome(str) {
   var re = /[\W_]/g;
   var lowRegStr = str.toLowerCase().replace(re, '');
   var reverseStr = lowRegStr.split('').reverse().join(''); 
   return reverseStr === lowRegStr;
 }
 
+// ----------------------------------------------------------------- //
+// Palindrome (6)
 
-function palindrome(str) {
+function checkPalindrome(str) {
  var re = /[^A-Za-z0-9]/g;
  str = str.toLowerCase().replace(re, '');
  var len = str.length;
