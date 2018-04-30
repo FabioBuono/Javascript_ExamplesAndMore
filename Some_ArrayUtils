@@ -1,0 +1,60 @@
+//  Get a random item from an array
+
+var items = [12, 548 , 'a' , 2 , 5478 , 'foo' , 8852, , 'Doe' , 2145 , 119];
+var  randomItem = items[Math.floor(Math.random() * items.length)];
+
+
+// Get a random number in a specific range
+
+var x = Math.floor(Math.random() * (max - min + 1)) + min;
+
+
+
+// Generate an array of numbers with numbers from 0 to max
+
+var numbersArray = [] , max = 100;
+for( var i=1; numbersArray.push(i++) < max;);
+
+
+// Generate a random set of alphanumeric characters
+
+function generateRandomAlphaNum(len) {
+    var rdmString = "";
+    for( ; rdmString.length < len; rdmString  += Math.random().toString(36).substr(2));
+    return  rdmString.substr(0, len);
+
+}
+
+// Shuffle an array of numbers
+
+var numbers = [5, 458 , 120 , -215 , 228 , 400 , 122205, -85411];
+numbers = numbers.sort(function(){ return Math.random() - 0.5});
+
+
+// Append an array to another array
+
+var array1 = [12 , "foo" , {name "Joe"} , -2458];
+
+var array2 = ["Doe" , 555 , 100];
+Array.prototype.push.apply(array1, array2);
+
+
+// Verify that a given argument is an array
+
+function isArray(obj){
+    return Object.prototype.toString.call(obj) === '[object Array]' ;
+}
+
+// Get the max or the min in an array of numbers
+
+var  numbers = [5, 458 , 120 , -215 , 228 , 400 , 122205, -85411]; 
+var maxInNumbers = Math.max.apply(Math, numbers); 
+var minInNumbers = Math.min.apply(Math, numbers);
+
+// Empty an array
+
+var myArray = [12 , 222 , 1000 ];  
+myArray.length = 0; // myArray will be equal to [].
+
+
+
