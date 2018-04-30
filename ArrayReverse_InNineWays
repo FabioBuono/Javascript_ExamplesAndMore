@@ -1,0 +1,139 @@
+Copyright 2018 Fabio Buono (fabio.buono@ymail.com)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and 
+associated documentation files (the "Software"), to deal in the Software without restriction, 
+including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, 
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial 
+portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, 
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
+OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+// ----------------------------------------------------------------- //
+// ----------------------------------------------------------------- //
+//                  ARRAY REVERSE IN 9 WAYS                          //
+// ----------------------------------------------------------------- //
+// ----------------------------------------------------------------- //
+
+
+
+// ----------------------------------------------------------------- //
+// Reverse Array
+
+var a = [3,5,7,8];
+a.reverse(); // 8 7 5 3
+
+// ----------------------------------------------------------------- //
+// Reverse Array (1)
+
+function reverseArray(input) {
+    var ret = new Array;
+    for(var i = input.length-1; i >= 0; i--) {
+        ret.push(input[i]);
+    }
+    return ret;
+}
+
+var a = [3,5,7,8]
+var b = reverseArray(a);
+
+// ----------------------------------------------------------------- //
+// Reverse Array (2)
+
+var a = [1,2,3,4,5,6,7,8];
+
+var b = [].concat(a).reverse();
+
+// ----------------------------------------------------------------- //
+// Reverse Array (3)
+
+const a = [1,"two",3,"four",5,"six"];
+
+function reverseArray(array){
+  return array.map((item,idx) => array[array.length-1-idx])
+}
+
+// ----------------------------------------------------------------- //
+// Reverse Array (4)
+
+let reverseArray=a=>[...a].map(a.pop,a)
+
+// ----------------------------------------------------------------- //
+// Reverse Array (5)
+
+function inPlaceReverseArray(arr) {
+  var i = 0;
+  while (i < arr.length - 1) {
+    arr.splice(i, 0, arr.pop());
+    i++;
+  }
+  return arr;
+}
+
+
+// ----------------------------------------------------------------- //
+// Reverse Array II (6)
+
+ var arr = ["a","b","c","d","e","f"]
+ var arr2 = []
+
+    var reverseArrayInPlace = function(array){
+
+      var arrLength = array.length
+      for (i = 0; i < arrLength; i++) {
+        arr2.push(array.pop())
+        array.push(arr2.shift())
+      }
+    }
+
+    reverseArrayInPlace(arr)
+
+// ----------------------------------------------------------------- //
+// Reverse Array (7)
+
+function reverseArrayUsingXOR(x){
+    var l = x.length;
+    for(var i=0; i<Math.floor(l/2); i++){
+    
+        var a = x[i];
+        var b = x[l-1-i];
+
+        a = a^b;
+        b = b^a;
+        a = a^b;
+
+        x[i] = a;
+        x[l-1-i] = b;
+    }
+
+    return x;
+
+}
+
+// ----------------------------------------------------------------- //
+// Reverse Array (8)
+
+function reverseArray(a){
+    for(i=0,j=a.length-1;i<j;)a[i]=a[j]+(a[j--]=a[i++],0)
+}
+
+
+// ----------------------------------------------------------------- //
+// Reverse Array (9)
+
+var reverseArray = function (list) {
+  return list.reduce(function (list, current) {
+    list.unshift(current);
+    return list;
+  }, []);
+};
+
+
+
