@@ -1,0 +1,16 @@
+
+== VS === 
+Floating point problems with JavaScript floating points internal representation (64 bit - IEEE 754 standard)
+
+In Javascript 0.1 + 0.2 is 0.30000000000000004
+
+so
+
+0.1 + 0.2 === 0.3    // false 
+
+9007199254740992 + 1 // is equal to 9007199254740992  
+9007199254740992 + 2 // is equal to 9007199254740994
+
+SOLUTION: 
+            toFixed() 
+            toPrecision() 
