@@ -1,51 +1,64 @@
-1. Applicazione parziale:
 
+// ----------------------------- //
+// Some Javascript Code Examples //
+// ----------------------------- //
+
+// ------------------------------------------------------------------ //
 const add = (x,y) => x+y;
 const add3 = partial(add,3);
 add3(2)==5;
 
+// ------------------------------------------------------------------ //
 2. Closure
 
 var sum = (x,y) => {
   return (y) => {x+y};
 }
-var tre = sum(3);
-tre(2);
+var mulThree = sum(3);
+mulThree(2);
 
-3. Curryng 
+
+// ------------------------------------------------------------------ //
 
 const somma = x => y => x+y;
 
-Nota che assegnare una funzione a una variabile è un alias:
+// ------------------------------------------------------------------ //
 
 function somma(x,y)=>x*y;
 const aliasSomma = somma;
 
-Funzione MAP:
+// ------------------------------------------------------------------ //
+
 
 function double(n)=> {return name.map(n => n*2);}
 double([1,2,3]);
 
 
-DESTRUTTURA:
+// ------------------------------------------------------------------ //
+
+const head = ([x]) => x
+
+// ------------------------------------------------------------------ //
 
 const array = (...elements) => {
   return elements;
 }
 console.log((array(1,2,3))[2]);
 
-oppire:
+Another way:
+
 const tail = ([, ...xs]) => xs;
 const tail = ([x, ...xs]) => xs;
 
-Ancora: 
+// ------------------------------------------------------------------ //
+
 
 const logs = (...args) => {
   console.log(...args);
 }
 logs(1,2,3, "a");
 
-Oppure:
+
 
 const langs = ["javascript","b","c"];
 const [js, ...rest] = langs;
@@ -53,26 +66,31 @@ console.log(js === "javascript");
 console.log(rest[0] === "b");
 console.log(rest[1] === "b");
 
-
-Argomenti variabili:
+// ------------------------------------------------------------------ //
 
 const second = ([x,y,...argss]) => y;
+
+// ------------------------------------------------------------------ //
+
 const head = ([x]) => x;
+
+// ------------------------------------------------------------------ //
 
 function pari(arg){
   return ((arg%2)==0);
 }
+
+
 const if_ntn = ([...args], f,n = 0) => {
   return (args.filter(f))[n];
 }
+
 console.log(head([11,22,33]));
 console.log(second([11,22,33]));
 console.log("pari: "+ if_ntn([11,22,33,44,66],pari,1));
 console.log("pari: "+ if_ntn([11,22,33,44,66],pari));
 
-
-
-BIND:
+// ------------------------------------------------------------------ //
 
 const partialFromBind =(fn, ...args) => {
   return fn.bind(null, ...args);
@@ -83,61 +101,37 @@ const partial = (fn, ...args) => {
   };
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const head = ([x]) => x
-const tail = ([, ...xs]) => xs
+// ------------------------------------------------------------------ //
 
 const def = x => typeof x !== 'undefined'
 const undef = x => !def(x)
 
 
+// ------------------------------------------------------------------ //
+
 // Copy array
 const copy = array => [...array]
 
-USO:
-let array = [1,2,3,4,5]
-let copied = copy(array)
-copied.push(6)
+// ------------------------------------------------------------------ //
 
-array // [1,2,3,4,5]
-copied // [1,2,3,4,5,6]
-
-// LUNGHEZZA ARRAY
 const length = ([x, ...xs], len = 0) => def(x) ? length(xs, len + 1) : len;
 const length = ([x, ...xs]) => def(x) ? 1 + length(xs) : 0;
-
-
-
-
-
-
 const length = ([x, ...xs], len = 0) => def(x) ? length(xs, len + 1) : len
 const length = ([x, ...xs]) => def(x) ? 1 + length(xs) : 0
 
+// ------------------------------------------------------------------ //
+
 const reverse = ([x, ...xs]) => def(x) ? [...reverse(xs), x] : []   // ha senso perché array.reverse() cambia l'origine
 
+// ------------------------------------------------------------------ //
 
 const first = ([x, ...xs], n = 1) => def(x) && n ? [x, ...first(xs, n - 1)] : []  // return first n
+
+// ------------------------------------------------------------------ //
+
 const last = (xs, n = 1) => reverse(first(reverse(xs), n))
 
+// ------------------------------------------------------------------ //
 
 const slice = ([x, ...xs], i, y, curr = 0) => def(x)
   ? curr === i
@@ -145,25 +139,24 @@ const slice = ([x, ...xs], i, y, curr = 0) => def(x)
     : [x, ...slice(xs, i, y, curr + 1)]
   : []
 
-/* 
-
 const array = [1,2,4,5]
-slice(array, 2, 3) // [1,2,3,4,5]
-*/
+slice(array, 2, 3) 
 
-
+// ------------------------------------------------------------------ //
 
 const isArray = x => Array.isArray(x)
 
+// ------------------------------------------------------------------ //
 
 const flatten = ([x, ...xs]) => def(x)
     ? isArray(x) ? [...flatten(x), ...flatten(xs)] : [x, ...flatten(xs)]
     : []
-// flatten([array1, array2]) // [1,2,3,4,5,6]
 
+flatten([array1, array2])
 
+// ------------------------------------------------------------------ //
 
-onst swap = (a, i, j) => (
+const swap = (a, i, j) => (
   map(a, (x,y) => {
     if(y === i) return a[j]
     if(y === j) return a[i]
@@ -171,12 +164,10 @@ onst swap = (a, i, j) => (
   })
 )
 
-
-/*
 const array = [1,2,3,4,5]
 swap(array, 0, 4) // [5,2,3,4,1]
-*/
 
+// ------------------------------------------------------------------ //
 
 const map = ([x, ...xs], fn) => {
   if (undef(x)) return []
@@ -185,9 +176,7 @@ const map = ([x, ...xs], fn) => {
 
 const map = ([x, ...xs], fn) => def(x) ? [fn(x), ...map(xs, fn)] : []
 
-
-Aggungere MAP DA GIALLO...
-
+// ------------------------------------------------------------------ //
 
 const filter = ([x, ...xs], fn) => {
   if (undef(x)) return []
@@ -204,6 +193,7 @@ const filter = ([x, ...xs], fn) => def(x)
         ? [x, ...filter(xs, fn)] : [...filter(xs, fn)]
     : []
 
+// ------------------------------------------------------------------ //
 
 const reject = ([x, ...xs], fn) => {
   if (undef(x)) return []
@@ -214,16 +204,16 @@ const reject = ([x, ...xs], fn) => {
   }
 }
 
+// ------------------------------------------------------------------ //
+
 const partition = (xs, fn) => [filter(xs, fn), reject(xs, fn)]
 
-/*
 
 const even = x => x % 2 === 0
 const array = [0,1,2,3,4,5]
-
 partition(array, even) // [[0,2,4], [1,3,5]]
-*/
 
+// ------------------------------------------------------------------ //
 
 const reduce = ([x, ...xs], fn, memo, i) => {
   if (undef(x)) return memo
@@ -234,21 +224,13 @@ const reduce = ([x, ...xs], fn, memo, i) => {
 const reduce = ([x, ...xs], fn, memo, i = 0) => def(x)
     ? reduce(xs, fn, fn(memo, x, i), i + 1) : memo
 
-/*
+
+
 const sum = (memo, x) => memo + x
 reduce([1,2,3], sum, 0) // 6
 
-const flatten = (memo, x) => memo.concat(x)
-reduce([4,5,6], flatten, [1,2,3]) // [1,2,3,4,5,6]
-*/
 
-const reduceRight = (xs, fn, memo) => reduce(reverse(xs), fn, memo)
-/*
-const flatten = (memo, x) => memo.concat(x)
-
-reduceRight([[0,1], [2,3], [4,5]], flatten, []) // [4, 5, 2, 3, 0, 1]
-*/
-
+// ------------------------------------------------------------------ //
 
 function reduce(combine, base, array) {
   forEach(array, function (element) {
@@ -267,102 +249,62 @@ function sum(numbers) {
 
 
 
+// ------------------------------------------------------------------ //
 
+const reduceRight = (xs, fn, memo) => reduce(reverse(xs), fn, memo)
 
+reduceRight([[0,1], [2,3], [4,5]], flatten, []) // [4, 5, 2, 3, 0, 1]
 
-
-
-
+// ------------------------------------------------------------------ //
 
 const partial = (fn, ...args) => (...newArgs) => fn(...args, ...newArgs)
 
-/*
+
 const add = (x,y) => x + y
 const add5to = partial(add, 5)
-
 add5to(10) // 15
-*/
 
+// ------------------------------------------------------------------ //
 
 const spreadArg = (fn) => (...args) => fn(args)
 
-const add = ([x, ...xs]) => def(x) ? parseInt(x + add(xs)) : []
-/*
-add([1,2,3,4,5]) // 15
+// ------------------------------------------------------------------ //
 
+const add = ([x, ...xs]) => def(x) ? parseInt(x + add(xs)) : []
+
+add([1,2,3,4,5]) // 15
 const spreadAdd = spreadArg(add)
 spreadAdd(1,2,3,4,5) // 15
-*/
 
-const add = spreadArg(([x, ...xs]) => def(x) ? parseInt(x + add(...xs)) : [])
-/*  add(1,2,3,4,5) // 15  */
-
+// ------------------------------------------------------------------ //
 
 const reverseArgs = (fn) => (...args) => fn(...reverse(args))
 
-/*
+
 const divide = (x,y) => x / y
 divide(100,10) // 10
 
 const reverseDivide = reverseArgs(divide)
 reverseDivide(100,10) // 0.1
-*/
 
+// ------------------------------------------------------------------ //
 
 const pluck = (key, object) => object[key]
 
-/*
+
 const product = {price: 15}
 pluck('price', product) // 15
 
 const getPrices = partial(pluck, 'price')
+
 const products = [
   {price: 10},
   {price: 5},
   {price: 1}
 ]
 map(products, getPrices) // [10,5,1]
-*/
 
-
-
-
-const flow = (...args) => init => reduce(args, (memo, fn) => fn(memo), init)
-
-
-/*
-const getPrice = partial(pluck, 'price')
-const discount = x => x * 0.9
-const tax = x => x + (x * 0.075)
-const getFinalPrice = flow(getPrice, discount, tax)
-
-// looks like: tax(discount(getPrice(x)))
-// -> get price
-// -> apply discount
-// -> apply taxes to discounted price
-
-const products = [
-  {price: 10},
-  {price: 5},
-  {price: 1}
-]
-
-map(products, getFinalPrice) // [9.675, 4.8375, 0.9675]
-*/
-
-
-
-const compose = (...args) => flow(...reverse(args))
-
-
-
-/*
-const getFinalPrice = compose(tax, discount, getPrice)
-
-// looks like: tax(discount(getPrice(x)))
-
-map(products, getFinalPrice) // [9.675, 4.8375, 0.9675]
-*/
+// ------------------------------------------------------------------ //
 
 
 function compose(func1, func2) {
@@ -371,12 +313,14 @@ function compose(func1, func2) {
   };
 }
 
+// ------------------------------------------------------------------ //
+
 var isUndefined = partial(op["==="], undefined);
 var isDefined = compose(op["!"], isUndefined);
 show(isDefined(Math.PI));
 show(isDefined(Math.PIE));
 
-
+// ------------------------------------------------------------------ //
 
 const min = ([x, ...xs], result = Infinity) => def(x)
     ? x < result
@@ -384,6 +328,7 @@ const min = ([x, ...xs], result = Infinity) => def(x)
         : result
     : result
 
+// ------------------------------------------------------------------ //
 
 const max = ([x, ...xs], result = -Infinity) => def(x)
     ? x > result
@@ -391,16 +336,15 @@ const max = ([x, ...xs], result = -Infinity) => def(x)
         : max(xs, result)
     : result
 
+// ------------------------------------------------------------------ //
 
+const factorial = (x, acum = 1) => x ? factorial(x - 1, x * acum) : acum
 
-nst factorial = (x, acum = 1) => x ? factorial(x - 1, x * acum) : acum
-
-
+// ------------------------------------------------------------------ //
 
 const fib = x => x > 2 ? fib(x - 1) + fib(x - 2) : 1
 
-
-
+// ------------------------------------------------------------------ //
 
 const quicksort = (xs) => length(xs)
   ? flatten([
@@ -411,17 +355,9 @@ const quicksort = (xs) => length(xs)
   : []
 
 
-const quicksort = (array) => {
-  if (!length(array)) return []
-  const [less, more] = partition(tail(array), x => x < head(array))
-  return flatten([quicksort(less), head(array), quicksort(more)])
-}
+// ------------------------------------------------------------------ //
 
-
-
-Everything as a Reduction
-
-Many of the functions above can be converted into reductions, which should increase performance in most, if not all cases. This also shows the flexibility of the reduce function.
+Defined using reduce:
 
 const reduce = ([x, ...xs], f, memo, i = 0) => def(x)
     ? reduce(xs, f, f(memo, x, i), i + 1) : memo
@@ -471,24 +407,6 @@ flatten([1,[2,3,[4,[5,[[6]]]]]]) // [1,2,3,4,5,6]
 add(1,2,3,4,5) // 15
 multiply(2,5,10) // 100
 divide(100,2,5) // 10
-
-
-
-
-
-
-ALTRO:
-const def = x => typeof x !== 'undefined'
-const undef = x => !def(x)
-
-
-
-https://medium.com/dailyjs/functional-js-with-es6-recursive-patterns-b7d0813ef9e3
-
-https://medium.com/dailyjs/functional-js-with-es6-recursive-patterns-b7d0813ef9e3
-
-
-
 
 
 
