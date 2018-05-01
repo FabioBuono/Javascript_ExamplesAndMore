@@ -59,13 +59,6 @@ const logs = (...args) => {
 logs(1,2,3, "a");
 
 
-
-const langs = ["javascript","b","c"];
-const [js, ...rest] = langs;
-console.log(js === "javascript");
-console.log(rest[0] === "b");
-console.log(rest[1] === "b");
-
 // ------------------------------------------------------------------ //
 
 const second = ([x,y,...argss]) => y;
