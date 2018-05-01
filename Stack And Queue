@@ -1,0 +1,217 @@
+//  ----- Stack: Fist version  ----- //
+
+const stack = [];
+stack.push(2);       
+stack.push(5);       
+const i = stack.pop(); 
+
+//  ----- Queue: Fist version  ----- //
+
+const queue = [];
+queue.push(2);         
+queue.push(5);         
+const i = queue.shift(); 
+
+
+//  ----- Stack: Second version  ----- //
+
+var Stack = function(){
+  this.top = null;
+  this.size = 0;
+};
+
+var Node = function(data){
+  this.data = data;
+  this.previous = null;
+};
+
+Stack.prototype.push = function(data) {
+  var node = new Node(data);
+
+  node.previous = this.top;
+  this.top = node;
+  this.size += 1;
+  return this.top;
+};
+
+Stack.prototype.pop = function() {
+  temp = this.top;
+  this.top = this.top.previous;
+  this.size -= 1;
+  return temp;
+};
+
+
+//  ----- Queue: Second version  ----- //
+
+var Queue = function() {
+  this.first = null;
+  this.size = 0;
+};
+
+var Node = function(data) {
+  this.data = data;
+  this.next = null;
+};
+
+Queue.prototype.enqueue = function(data) {
+  var node = new Node(data);
+
+  if (!this.first){
+    this.first = node;
+  } else {
+    n = this.first;
+    while (n.next) {
+      n = n.next;
+    }
+    n.next = node;
+  }
+
+  this.size += 1;
+  return node;
+};
+
+Queue.prototype.dequeue = function() {
+  temp = this.first;
+  this.first = this.first.next;
+  this.size -= 1;
+  return temp;
+};
+
+
+//  ----- Stack: ES6 Class version ----- //
+
+class Stack {
+  constructor(...items){
+    this._items = []
+    if(items.length>0)
+      items.forEach(item => this._items.push(item) )
+  }
+
+  push(...items){
+     items.forEach(item => this._items.push(item) )
+     return this._items;
+  }
+
+  pop(count=0){
+    if(count===0)
+      return this._items.pop()
+     else
+       return this._items.splice( -count, count )
+  }
+
+  peek(){
+    return this._items[this._items.length-1]
+  }
+
+  size(){
+    return this._items.length
+  }
+
+  isEmpty(){
+    return this._items.length==0
+  }
+
+  toArray(){
+    return this._items;
+  }
+}
+
+
+
+//  ----- Queue: ES6 Class version ----- //
+
+class Queue{
+ constructor(...items){
+   //initialize the items in queue
+   this._items = []
+   // enqueuing the items passed to the constructor
+   this.enqueue(...items)
+ }
+
+  enqueue(...items){
+    //push items into the queue
+    items.forEach( item => this._items.push(item) )
+    return this._items;
+  }
+
+  dequeue(count=1){
+    //pull out the first item from the queue
+    this._items.splice(0,count);
+    return this._items;
+  }
+
+  peek(){
+    //peek at the first item from the queue
+    return this._items[0]
+  }
+
+  size(){
+    //get the length of queue
+    return this._items.length
+  }
+
+  isEmpty(){
+    //find whether the queue is empty or no
+    return this._items.length===0
+  }
+}
+
+
+
+//  ----- Stack: Without array version ----- //
+
+function node(value, noderef) {
+    this.value = value;
+    this.next = noderef;
+}
+function stack() {
+    this.push = function (value) {
+        this.next = this.first;
+        this.first = new node(value, this.next);
+    }
+    this.pop = function () {
+        var popvalue = this.first.value;
+        this.first = this.first.next;
+        return popvalue;
+    }
+    this.hasnext = function () {
+        return this.next != undefined;
+    }
+    this.isempty = function () {
+        return this.first == undefined;
+    }
+
+}
+
+
+//  ----- Queue: Without array version ----- //
+
+function node(value, noderef) {
+    this.value = value;
+    this.next = undefined;
+}
+function queue() {
+    this.enqueue = function (value) {
+        this.oldlast = this.last;
+        this.last = new node(value);
+        if (this.isempty())
+            this.first = this.last;
+        else 
+           this.oldlast.next = this.last;
+    }
+    this.dequeue = function () {
+        var queuvalue = this.first.value;
+        this.first = this.first.next;
+        return queuvalue;
+    }
+    this.hasnext = function () {
+        return this.first.next != undefined;
+    }
+    this.isempty = function () {
+        return this.first == undefined;
+    }
+
+}
+
+
