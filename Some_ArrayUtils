@@ -1,9 +1,202 @@
 
+// -- -- -- --  Array In Javascript  -- -- -- -- //
+
+
+// -------------------------------------------- //
+//  create an empty Array that's sized for 10 elements
+
+const ArrayName = new Array(10); 
+
+
+// -------------------------------------------- //
+// create an Array with 10 as the first element
+
+
+const ArrayName = [10];          
+
+// -------------------------------------------- //
+// create an array 
+
+const array_name = [item1, item2, ...]; 
+
+
+// -------------------------------------------- //
+// Test array type
+
+Array.isArray(ArrayName);
+
+
+// -------------------------------------------- //
+// The length property returns the number of elements
+
+const x = arrayname.length;   
+
+
+// -------------------------------------------- //
+// Change array lenght by lenght property
+
+arrayname.length = newLength;
+
+
+// -------------------------------------------- //
+// adds a new element with .length
+
+ArrayName[ArrayName.length] = "element";     
+
+
+// -------------------------------------------- //
+// Empty an array with .length
+
+var ArrayName = [11 , 22 , 333];  
+ArrayName.length = 0; 
+
+
+// -------------------------------------------- //
+// Push an element
+
+ArrayName.push("element");         
+
+
+// -------------------------------------------- //
+// Pop an element 
+
+const x = ArrayName.pop();
+
+
+// -------------------------------------------- //
+// unshift()  add a value/element to the beginning of an Array.
+
+const ArrayName = ['111', '222', '333'];
+ArrayName.unshift('222');
+console.log(ArrayName); // ["222", "111", "222", "333"]
+
+
+// -------------------------------------------- //
+// Attention with mixed name and numeric index
+
+const ArrayName = [];
+ArrayName["field"] = "value";
+const x = ArrayName.length;         // x = 0
+const y = ArrayName[0];             // y = undefined
+
+
+
+// -------------------------------------------- //
+// Searching a value
+
+const ArrayName = ['111', '222', '333', '4444'];
+ArrayName.indexOf('333') // 2
+
+
+// -------------------------------------------- //
+// String from Arrays
+
+const ArrayName1 = ['111', '222', '333'];
+const ArrayName2 = ['aaa', 'bbb', 'ccc'];
+const ArrayName3 = ['kk1', 'kk2'];
+
+const ArrayName = ArrayName1.concat(ArrayName2, ArrayName3);
+
+
+
+// -------------------------------------------- //
+// Clone Array
+
+var a = [1,2,3];
+var b = a;
+
+var b = a.slice(0);
+a.pop();
+console.log(b);
+//[1,2,4]
+
+// -------------------------------------------- //
+// Sort Array
+var a = [1,4,2,3];
+
+
+console.log(a.sort());
+console.log(a.reverse());
+
+/* array.sort().reverse(); */
+
+is the same of:
+
+console.log(a.sort(function(a,b){  return (b-a); }));
+
+/*
+array.sort((a, b) => {
+    // a = current item in array
+    // b = next item in array
+    return a < b;
+});
+*/
+
+
+// -------------------------------------------- //
+// Merge array
+
+var a = [1,2,3];
+var b = [4,5];
+
+// Array.prototype.push.apply(mergeTo, mergeFrom);
+
+Array.prototype.push.apply(a, b);
+
+
+// -------------------------------------------- //
+// Remove element by Index
+
+
+
+
+
+
+// -------------------------------------------- //
+// Randomize the order of the array:
+
+var myarray=[25, 8, "aaa", "bbb"]
+myarray.sort(function() {return 0.5 - Math.random()})
+
+
 
 // -------------------------------------------- //
 // Fill array with unique values
 
 const arr = [...new Set([1, 2, 3, 3])]
+
+
+// -------------------------------------------- //
+// Remove Duplicates 4 ways
+
+
+
+function uniq(arr){
+    let unique_array = []
+    for(let i = 0;i < arr.length; i++){
+        if(unique_array.indexOf(arr[i]) == -1){
+            unique_array.push(arr[i])
+        }
+    }
+    return unique_array
+}
+
+
+function uniq(a) {
+    return a.sort().filter(function(item, pos, ary) {
+        return !pos || item != ary[pos - 1];
+    })
+}
+
+
+function uniq(a) {
+   return Array.from(new Set(a));
+}
+
+
+
+let uniq = a => [...new Set(a)];
+
 
 // -------------------------------------------- //
 //  Get a random item from an array
@@ -21,6 +214,7 @@ var x = Math.floor(Math.random() * (max - min + 1)) + min;
 
 var numbersArray = [] , max = 100;
 for( var i=1; numbersArray.push(i++) < max;);
+
 
 // -------------------------------------------- //
 // Generate a random set of alphanumeric characters
@@ -90,11 +284,116 @@ var  numbers = [5, 458 , 120 , -215 , 228 , 400 , 122205, -85411];
 var maxInNumbers = Math.max.apply(Math, numbers); 
 var minInNumbers = Math.min.apply(Math, numbers);
 
-// -------------------------------------------- //
-// Empty an array
 
-var myArray = [12 , 222 , 1000 ];  
-myArray.length = 0; // [].
+
+
+// -------------------------------------------- //
+// Another Example (1)
+
+
+var employees=[]
+employees[0]={name:"George", age:32, retiredate:"March 12, 2014"}
+employees[1]={name:"Edward", age:17, retiredate:"June 2, 2023"}
+employees[2]={name:"Christine", age:58, retiredate:"December 20, 2036"}
+employees[3]={name:"Sarah", age:62, retiredate:"April 30, 2020"}
+
+// Sort by employee age
+ employees.sort(function(a, b){
+   return a.age-b.age
+ });
+
+// Sort by employee name
+employees.sort(function(a, b){
+    var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase()
+    if (nameA < nameB) //sort string ascending
+        return -1
+    if (nameA > nameB)
+        return 1
+    return 0 //default return value (no sorting)
+});
+
+// Sort by date (retirement date)
+employees.sort(function(a, b){
+  var dateA=new Date(a.retiredate), dateB=new Date(b.retiredate)
+     return dateA-dateB //sort by date ascending
+  });
+})
+
+
+// -------------------------------------------- //
+// Another Example (2)
+
+
+const people = [
+  {
+    name: 'Sara',
+    age: 25,
+    gender: 'f',
+    us: true
+  },
+  {
+    name: 'Mike',
+    age: 18,
+    gender: 'm',
+    us: false,
+  },
+   {
+    name: 'Peter',
+    age: 17,
+    gender: 'm',
+    us: false,
+  },
+   {
+    name: 'Ricky',
+    age: 27,
+    gender: 'm',
+    us: false,
+  },
+  {
+    name: 'Martha',
+    age: 20,
+    gender: 'f',
+    us: true
+  }
+];
+
+
+// Get the Women
+let women = people.filter(function(person) {
+    return person.gender === 'f';
+});
+
+
+or:
+
+let women = people.filter((person) => person.gender === 'f');
+
+
+console.table(women);
+
+
+
+// Getting People Old Enough to Drink
+
+let legal = people.filter((person) => {
+   return person.us ? person.age >= 21 : person.age >= 18;
+});
+
+
+let legalFunction = (person) => person.us ? person.age >= 21 : person.age >= 18;
+
+
+// reduce
+
+let age = people.reduce((starter, person) => {
+    return starter + person.age;
+}, 0);
+
+
+let obj = people.reduce((starter, person) => {
+    person.gender === 'm' ? starter.men++ : starter.woman++;
+    return starter;
+}, {men: 0, woman: 0}); 
 
 
 
