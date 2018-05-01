@@ -1,3 +1,5 @@
+
+
 // -------------------------------------------- //
 // Fill array with unique values
 
@@ -64,6 +66,7 @@ Note:
 // -------------------------------------------- //
 
 
+
 // -------------------------------------------- //
 // Remove Array element by Index
 
@@ -80,7 +83,6 @@ function isArray(obj){
     return Object.prototype.toString.call(obj) === '[object Array]' ;
 }
 
-
 // -------------------------------------------- //
 // Get the max or the min in an array of numbers
 
@@ -92,7 +94,8 @@ var minInNumbers = Math.min.apply(Math, numbers);
 // Empty an array
 
 var myArray = [12 , 222 , 1000 ];  
-myArray.length = 0; // myArray will be equal to [].
+myArray.length = 0; // [].
+
 
 
 
